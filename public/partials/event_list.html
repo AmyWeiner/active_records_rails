@@ -1,0 +1,43 @@
+<table ng-show='loaded' class='result-table-header'>
+    <tbody>
+      <tr align="left">
+        <th width=50px class="sort-btn" ng:class="selectedCls('name')" ng:click="changeSorting('name')">
+          <div class='table-head'>
+            &nbsp;{{head.name}}&nbsp({{currentItemCount()}})
+          </div>
+        </th>
+        <th width=30px class="sort-btn sort-btn-when" ng:class="selectedCls('timesort')" ng:click="changeSorting('timesort')">
+          <div class='table-head th-when'>
+            &nbsp;{{head.timesort}}
+          </div>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+
+    <div ng-cloak ng-show='loaded' id="vp" class="top-left-content result-list">
+      <table class='result-table'>
+        <tbody>
+          <tr  class='tcount' id='{{item.id}}' ng-repeat="item in current[type] | filter:search | orderBy: sort.column:sort.descending">
+            <td class='cell' id='time_{{item.id}}'  width=25px ng-click='itemClicked(item)'>
+              <div ng-repeat='t in item.time'>
+                {{t}}</br>
+              </div>
+            </td>
+            <td id='name_{{item.id}}' class=' {{item.category.name}}-td event-td' width=344px ng-click='itemClicked(item)'>
+              {{item.name}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div ng-cloak ng-show='loaded' class="top-left-ext">
+      <div ng-show='showDirections()' class='top-left-content directions' ng-click='directionsClicked()'>
+       <span> {{'WHERE' | translate }}&nbsp;</span><img src="https://maps.gstatic.com/tactile/directions/omnibox/dir_reverse-1x.png" />
+      </div>
+      <div ng-show="showCard()" class="top-left-content card">
+        <div class='section-title'>
+          {{currentItem.description}}
+        </div>
+      </div>
+    </div>

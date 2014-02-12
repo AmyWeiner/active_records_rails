@@ -1,0 +1,417 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$color-exhibit: #27ae60;  // neph green: #c259b6
+$color-misc: #f1c40f;     // yellowis: a8a8a8
+$color-party: rgb(155, 89, 182);    // lila
+$color-theater: #2980b9;  // blue2: #2980b9
+$color-concert: #e67e22;   // carrot: #e67e22
+//$color-cine-head: #e67e22;   // carrot: #e67e22
+$color-cine-head: rgba(208, 216, 216, 1.0000);
+
+$color-misc-flat: rgba(241,196,15,0.8);
+$color-exhibit-flat: rgba(39,174,96,0.8);
+$color-party-flat: rgba(155, 89, 182,0.8); // rgba(192, 57, 43, 0.8);
+$color-theater-flat: rgba(41,128,185,0.8);
+$color-concert-flat: rgba(230,126,34,0.8);
+
+$color-greyed-out: rgba(170, 170, 170, 0.9);
+$grey-border: #ddd;
+
+$left_width: 350px;
+
+/* ==========================================================================
+ Category buttons
+ ========================================================================== */
+
+.top-left .categories {
+ font-size: 14px;
+ font-weight: 300;
+ height: 28px;
+ padding-top: 1px;
+ text-align: center;
+ margin-left: -1px;
+}
+
+.top-left .mode-btns {
+  padding-right: 0em;
+  padding-left: 0em;
+}
+
+.cat-wrpr {
+ display: inline-block;
+ margin-top: 3px;
+ padding-right: 3px; //even out with categories div padding left
+}
+
+.cat-btn- {
+  display: inline-block;
+  padding: 5px;
+  margin-left: 0.5em;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.main-cat {
+  padding: 2px 0px;
+  width: 50%;
+  display: inline-block;
+  border: solid 1px
+  $grey-border;
+  border-bottom: 0;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.main-btn-wrpr {
+  margin-left: -2px;
+}
+
+.main-btn-false {
+  border: 0;
+  border-bottom: solid 1px
+  $grey-border;
+  color: $color-greyed-out;
+}
+
+.events {
+}
+
+.films {
+  margin-left: -5px;
+}
+
+
+.sub-cat {
+  padding: 2px 11px 3px 11px;
+  cursor: pointer;
+  color: #555;
+}
+
+.party {
+  background: $color-party-flat;
+}
+
+.theater {
+  background: $color-theater-flat;
+}
+
+.concert {
+  background: $color-concert-flat;
+}
+
+.exhibit {
+  background: $color-exhibit-flat;
+}
+
+.misc {
+  background: $color-misc-flat;
+}
+
+.party-td { border: solid 0 $color-party;border-left-width: 5px;padding-left: 0.5ex; }
+.theater-td { border: solid 0 $color-theater;border-left-width: 5px;padding-left: 0.5ex; }
+.konzert-td { border: solid 0 $color-concert;border-left-width: 5px;padding-left: 0.5ex; }
+.ausstellung-td { border: solid 0 $color-exhibit;border-left-width: 5px;padding-left: 0.5ex; }
+.sonstiges-td { border: solid 0 $color-misc;border-left-width: 5px;padding-left: 0.5ex; }
+
+.cat-btn-false {
+  background-color: $color-greyed-out;
+  color: rgb(230,230,230);
+  box-shadow: inset 0px 0px 10px rgba(140,140,140,1);
+  -moz-box-shadow: inset 0px 0px 10px rgba(140,140,140,1);
+  -webkit-box-shadow: inset 0px 0px 10px rgba(140,140,140,1);
+  &:hover {
+    background-color: rgba(170,170,170,1);
+  }
+}
+
+/* ==========================================================================
+ Everything else
+ ========================================================================== */
+html, body {
+  height: 100%;
+  color: #444;
+}
+
+#wrapper {
+  position:relative;
+}
+
+.td-selected {
+  background: rgba(111, 111, 111, .70);
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+.top-left{
+  position: absolute;
+  width: $left_width;
+  top: 6px;
+  left: 10px;
+  z-index: 98;
+}
+
+.screening-div {
+  max-height: 100px;
+  overflow: auto;
+  width: 100%;
+}
+
+.screening-table {
+  word-break: break-word;
+}
+
+.venue-card{
+  font-size: 25px;
+  font-weight: 400;
+  overflow: hidden;
+}
+
+.screenings {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  top: 200px;
+  left: 200px;
+  z-index: 88;
+}
+
+.table-head{
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.th-when {
+  display: inline-block;
+}
+
+.cine-head {
+  background: $color-cine-head
+}
+
+#theater-head, #film-head {
+  margin-left: 7px;
+}
+
+.show-films {
+  cursor: pointer;
+  float: right;
+  padding-right: 2.5%;
+}
+
+.filter{
+  width: $left_width;
+  height: 38px;
+}
+
+.top-left-content{
+  position: relative;
+  padding: 2px 2px 0px;
+  background: rgba(255, 255, 255, .70);
+}
+
+.loader-image{
+  top: 150px;
+  left: 125px;
+  position: absolute;
+  margin: auto;
+  z-index: 99;
+}
+
+.result-table-header{
+  width: $left_width;
+  cellpadding:0;
+  cellspacing:0;
+  margin-bottom: 0px;
+  border-bottom: solid 1px
+  $grey-border;
+  border-spacing: 0px;
+}
+
+
+.result-table{
+  width: 340px;
+  margin-bottom: 0px;
+  border-top: 0px;
+}
+
+.result-list{
+  font-size: 16px;
+  font-weight: 300;
+  width: $left_width;
+  overflow: auto;
+  overflow-x: hidden;
+  direction: rtl;
+  padding-top: 0;
+}
+
+.cine {
+  font-size: 16px;
+  font-weight: 300;
+  width: $left_width;
+  overflow-x: hidden;
+  direction: rtl;
+  height: 100px;
+}
+
+.top-left-ext, .directions, .card {
+  width: $left_width;
+}
+
+.directions{
+  padding: 4px 2px 2px 10px;
+  text-decoration:underline;
+}
+
+.section-cine {
+  margin-left: 10px;
+}
+
+.card {
+  font-size: 14px;
+  font-weight: 300;
+  padding: 4px 2px 2px 10px;
+}
+
+.top-left-ext {
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(55,55,55,0.5);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(55,55,55,0.1);
+}
+
+/*Sort buttons
+========================================================================== */
+.sort-btn {
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  margin-top: -2px;
+  padding: 0.3em 6.7em 0.3em 0.7em;
+  cursor: pointer;
+  color: $color-greyed-out;
+  width: 80%;
+}
+
+.sort-btn-when {
+  margin-left: -1px;
+  padding: 0.3em 0em 0.3em 0.8em;
+  width: 20%;
+}
+
+.sort-true, .sort-false {
+  border: solid 1px
+  $grey-border;
+  border-bottom: solid 1px #fff;
+  color: #444;
+}
+
+.sort-false:before, .sort-true:before {
+  content:"▲";
+  position: absolute;
+  margin-top: -0px;
+  margin-left: -8px;
+}
+
+.sort-true:before {
+  content: "▼";
+}
+
+
+
+.top-right {
+  position: absolute;
+  top: 6px;
+  right: 30px;
+  z-index: 99
+}
+
+.top-right-about {
+  padding-left: 2px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 300;
+  background-color: $color-concert-flat;
+  text-align: right;
+}
+
+#share-buttons img {
+  width: 24px;
+  padding: 2px 4px;
+  border: 0;
+  box-shadow: 0;
+  display: inline;
+}
+
+.top-right-content{
+  width: 280px;
+  font-weight: 300;
+  height: 34px;
+  padding: 2px 2px 2px 2px;
+  background: rgba(255, 255, 255, .70);
+}
+
+.days select {
+   background: transparent;
+   width: 120px;
+   padding: 2px;
+   font-size: 18px;
+   border: 0px;
+   height: 36px;
+  -webkit-appearance: none;
+}
+
+.days-label{
+   width: 80px;
+   font-size: 20px;
+   border: 0px solid;
+   overflow: hidden;
+   background: no-repeat;
+}
+
+
+
+/* Styles
+========================================================================== */
+
+.re-inlb {
+  display: inline-block;
+}
+
+table tr th, table tr td {
+  color: #444;
+}
+
+.hide {
+  display: none !important;
+}
+
+

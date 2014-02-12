@@ -1,0 +1,75 @@
+<table ng-show='loaded' class='result-table-header'>
+    <tbody>
+      <tr class='cine-head' align="left">
+        <th ng:class="selectedCls('name')" ng:click="changeSorting('name')">
+          <div id="film-head" class='table-head'>
+            <span ng-hide="filmListHidden">{{head.name}}&nbsp({{currentItemCount()}})</span>
+            <span ng-show="filmListHidden">{{currentItem.name}}<span class="show-films">✖</span></span>
+          </div>
+        </th>
+      </tr>
+    </tbody>
+</table>
+
+<div ng-cloak ng-show='loaded' id="movie-list" class="top-left-content result-list">
+  <table class='result-table'>
+    <tbody>
+      <tr  class='tcount' id='{{item.id}}' ng-repeat="item in current[type] | filter:search | orderBy: sort.column:sort.descending" ng-click="hideFilmList()">
+        <td id='name_{{item.id}}' class=' {{item.category.name}}-td' width=334px ng-click='itemClicked(item)'>
+          {{item.name}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<table ng-show='itemSelected()' class='result-table-header' id="venue-header">
+    <tbody>
+      <tr class='cine-head' align="left">
+        <th>
+         <div id="theater-head" class='table-head ml-7'>
+            {{ 'SHOWING_AT' | translate}}
+
+          </div>
+        </th>
+      </tr>
+    </tbody>
+</table>
+
+<div ng-cloak ng-show='itemSelected()' id="venues" class="top-left-content cine">
+  <table class='result-table'>
+    <tbody>
+      <tr class='tccount' id='{{venue.id}}' ng-repeat="venue in venuesForFilm(currentItem, currentDate)">
+        <td id='cine_name_{{venue.id}}' class='cine-td' width=344px ng-click='filmVenueClicked(venue.id)'>
+          {{venue.name}}
+          <!-- : <span ng-repeat='s in screeningsForFilmInVenue(currentItem,venue)'>{{ s.time }}</span> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div ng-cloak ng-show='loaded' class="top-left-ext">
+  <div ng-show='showDirections()' class='top-left-content directions' ng-click='directionsClicked()'>
+    <span> {{'WHERE' | translate }}&nbsp;</span><img src="https://maps.gstatic.com/tactile/directions/omnibox/dir_reverse-1x.png" />
+  </div>
+  <div ng-show="showCard()" class="top-left-content card">
+    <div class='section-title'>
+      {{currentItem.description}}
+    </div>
+  </div>
+</div>
+
+
+<!--
+<div ng-show="showCard()" class="top-left-content card inlet">
+ <i>Showing at</i>: <span class='section-cine' ng-repeat="venue in venuesForFilm(currentItem)" ng-click='filmVenueClicked(venue.id)'>{{venue.name}}
+ </span>
+</div> -->
+
+<!-- <div id="show-theaters" class='top-left-content directions' ng-click='hideFilmList()"'>
+  <span>Show theaters</span>
+</div>
+ -->
+
+
