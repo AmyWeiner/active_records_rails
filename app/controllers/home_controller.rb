@@ -9,17 +9,17 @@ end
 def films
   requestedDay = parseDay params
   res = Film.cached_find_by_day requestedDay
-  render :json => res
+  render json: res
 end
 
 def venues
   res = Venue.cached_all
-  render :json => res
+  render json: res
 end
 
 def cinemas
   res = Venue.cached_all_cinemas
-  render :json => res
+  render json: res
 end
 
 private

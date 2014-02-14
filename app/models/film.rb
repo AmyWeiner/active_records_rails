@@ -10,17 +10,13 @@ class Film < ActiveRecord::Base
     upper = requestedDay+1.day
     #Rails.cache.clear
 
-    Rack::MiniProfiler.step "fetch films" do
-      Rails.cache.fetch ['films'+day_str] do
-        Film.includes(:screenings).where("screenings.datetime" =>lower..upper, "screenings.screenable_type" => "Film")#.select("distinct(datetime,venue_id), screenings.*")
-      end
+    Rails.cache.fetch ['films'+day_str] do
+      Film.includes(:screenings).where("screenings.datetime" =>lower..upper, "screenings.screenable_type" => "Film")#.select("distinct(datetime,venue_id), screenings.*")
     end
 
-    Rack::MiniProfiler.step "load json" do
-      Rails.cache.fetch ['films_json'+day_str] do
-        j = (Rails.cache.read 'films'+day_str).to_json( only: [:id,:name,:description,:detail_url],
-          include: [ {category: {only: [:sub,:name]}}, screenings: {only: [:datetime,:omu,:ov], include: [venue: {only: [:id]}] } ] )
-      end
+    Rails.cache.fetch ['films_json'+day_str] do
+      j = (Rails.cache.read 'films'+day_str).to_json( only: [:id,:name,:description,:detail_url],
+        include: [ {category: {only: [:sub,:name]}}, screenings: {only: [:datetime,:omu,:ov], include: [venue: {only: [:id]}] } ] )
     end
   end
 

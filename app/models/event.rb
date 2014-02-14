@@ -29,16 +29,12 @@ class Event < ActiveRecord::Base
     lower = requestedDay
     upper = requestedDay+1.day
 
-    Rack::MiniProfiler.step "fetch events" do
-      Rails.cache.fetch ['events'+day_str] do
-        Event.where(:datetime => lower..upper)
-      end
+    Rails.cache.fetch ['events'+day_str] do
+      Event.where(:datetime => lower..upper)
     end
 
-    Rack::MiniProfiler.step "load json" do
-      Rails.cache.fetch ['json'+day_str] do
-        (Rails.cache.read 'events'+day_str).to_json(:include => [:venue, :category, :screenings])
-      end
+    Rails.cache.fetch ['json'+day_str] do
+      (Rails.cache.read 'events'+day_str).to_json(:include => [:venue, :category, :screenings])
     end
   end
 

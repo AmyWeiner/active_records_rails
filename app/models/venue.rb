@@ -30,30 +30,21 @@ class Venue < ActiveRecord::Base
   has_many :films, through: :screenings
 
   def self.cached_all
-    #Rack::MiniProfiler.step "fetch venues" do
-      Rails.cache.fetch ['venues'] do
-        Venue.all
-      end
-    #end
+    Rails.cache.fetch ['venues'] do
+      Venue.all
+    end
 
-    #Rack::MiniProfiler.step "load venue json" do
-      Rails.cache.fetch ['json_venue'] do
-        (Rails.cache.read 'venues').to_json
-      end
-    #end
+    Rails.cache.fetch ['json_venue'] do
+      (Rails.cache.read 'venues').to_json
+    end
   end
 
   def self.cached_all_cinemas
-    Rack::MiniProfiler.step "fetch cinemas" do
-      Rails.cache.fetch ['cines'] do
-        Venue.where(kind: 'cine')
-      end
+    Rails.cache.fetch ['cines'] do
+      Venue.where(kind: 'cine')
     end
-
-    Rack::MiniProfiler.step "load cinema json" do
-      Rails.cache.fetch ['json_cine'] do
-        (Rails.cache.read 'cines').to_json
-      end
+    Rails.cache.fetch ['json_cine'] do
+      (Rails.cache.read 'cines').to_json
     end
   end
 
